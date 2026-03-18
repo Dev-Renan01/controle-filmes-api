@@ -1,12 +1,56 @@
 package br.com.dev_renan.service;
 
+import br.com.dev_renan.model.Filme;
 import br.com.dev_renan.repository.FilmeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ServiceFilmes {
 
     @Autowired
     private FilmeRepository repository;
+
+    public Filme save(Filme filme) {
+        return repository.save(filme);
+    }
+
+    public List<Filme> findAll() {
+        return repository.findAll();
+    }
+
+    public Filme findById(Long id) {
+        if (id == null) {
+            throw new RuntimeException("Filme não encontrado!");
+        }
+
+        return repository.findById(id) // Busca o filme pelo ID. Lança exceção caso não seja encontrado
+                .orElseThrow(() -> new RuntimeException("Filme não encontrado!"));
+    }
+
+    public Filme update(Filme filme) {
+        if (filme.getId() == null) {
+            throw new RuntimeException("Filme não encontrado!");
+        }
+
+        if (!repository.existsById(filme.getId())) {
+            throw new RuntimeException("Filme não encontrado");
+        }
+        return repository.save(filme);
+    }
+
+
+    public void delete(Long id) {
+        if (id == null) {
+            throw new RuntimeException("Filme não encontrado!");
+        }
+
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("Filme não encontrado!");
+        }
+
+        repository.deleteById(id);
+    }
 }

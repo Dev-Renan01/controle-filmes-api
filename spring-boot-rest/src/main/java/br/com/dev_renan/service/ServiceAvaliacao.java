@@ -9,4 +9,5 @@ public class ServiceAvaliacao {
 
     @Autowired
     private AvaliacaoRepository repository;
+
 }
