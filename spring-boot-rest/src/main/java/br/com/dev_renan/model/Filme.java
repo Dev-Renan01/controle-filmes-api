@@ -9,11 +9,12 @@ public class Filme {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false)
     private String titulo;
-
-    private Integer anoLancamento;
+    private int anoLancamento;
     private String genero;
+
+    @OneToMany
+    private Avaliacao avaliacao;
 
     public Long getId() {
         return id;
@@ -31,11 +32,11 @@ public class Filme {
         this.titulo = titulo;
     }
 
-    public Integer getAnoLancamento() {
+    public int getAnoLancamento() {
         return anoLancamento;
     }
 
-    public void setAnoLancamento(Integer anoLancamento) {
+    public void setAnoLancamento(int anoLancamento) {
         this.anoLancamento = anoLancamento;
     }
 

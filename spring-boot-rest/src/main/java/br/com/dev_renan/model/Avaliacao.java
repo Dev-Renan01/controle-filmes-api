@@ -9,10 +9,7 @@ public class Avaliacao {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false)
     private String usuario;
-
-    @Column(nullable = false)
     private Integer nota;
     private String comentario;
 
