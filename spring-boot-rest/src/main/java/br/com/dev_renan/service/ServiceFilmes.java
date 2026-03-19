@@ -23,7 +23,7 @@ public class ServiceFilmes {
 
     public Filme findById(Long id) {
         if (id == null) {
-            throw new RuntimeException("Filme não encontrado!");
+            throw new IllegalArgumentException("Informe um id válido!");
         }
 
         return repository.findById(id) // Busca o filme pelo ID. Lança exceção caso não seja encontrado
@@ -32,25 +32,23 @@ public class ServiceFilmes {
 
     public Filme update(Filme filme) {
         if (filme.getId() == null) {
-            throw new RuntimeException("Filme não encontrado!");
+            throw new IllegalArgumentException("Informe um id válido!");
         }
 
-        if (!repository.existsById(filme.getId())) {
-            throw new RuntimeException("Filme não encontrado");
-        }
+      repository.findById(filme.getId())
+              .orElseThrow(() -> new RuntimeException("Filme não encontrado!"));
         return repository.save(filme);
     }
 
 
     public void delete(Long id) {
         if (id == null) {
-            throw new RuntimeException("Filme não encontrado!");
+            throw new IllegalArgumentException("Informe um id válido!");
         }
 
-        if (!repository.existsById(id)) {
-            throw new RuntimeException("Filme não encontrado!");
-        }
+     Filme filme = repository.findById(id)
+                     .orElseThrow(() -> new RuntimeException("Filme não encontrado!"));
 
-        repository.deleteById(id);
+        repository.delete(filme);
     }
 }

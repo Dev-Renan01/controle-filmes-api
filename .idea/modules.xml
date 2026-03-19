@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/projeto-controle-filmes-spring-boot.iml" filepath="$PROJECT_DIR$/.idea/projeto-controle-filmes-spring-boot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/controle-filmes-api.iml" filepath="$PROJECT_DIR$/.idea/controle-filmes-api.iml" />
     </modules>
   </component>
 </project>
