@@ -1,22 +1,21 @@
-package br.com.dev_renan.model;
+package br.com.dev_renan.dto;
 
-import jakarta.persistence.*;
+import br.com.dev_renan.model.Filme;
 
-import java.util.List;
+public class FilmeResponseDTO {
 
-@Entity
-public class Filme {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String titulo;
     private Integer anoLancamento;
     private String genero;
 
-    @OneToMany
-    private List<Avaliacao> avaliacao;
+    public FilmeResponseDTO(Filme filme) {
+        this.id = filme.getId();
+        this.titulo = filme.getTitulo();
+        this.anoLancamento = filme.getAnoLancamento();
+        this.genero = filme.getGenero();
+    }
 
     public Long getId() {
         return id;
@@ -50,3 +49,4 @@ public class Filme {
         this.genero = genero;
     }
 }
+

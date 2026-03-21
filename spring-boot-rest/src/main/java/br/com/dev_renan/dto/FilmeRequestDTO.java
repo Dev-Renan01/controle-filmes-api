@@ -1,29 +1,13 @@
-package br.com.dev_renan.model;
+package br.com.dev_renan.dto;
 
-import jakarta.persistence.*;
-
-import java.util.List;
-
-@Entity
-public class Filme {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class FilmeRequestDTO {
 
     private String titulo;
     private Integer anoLancamento;
     private String genero;
 
-    @OneToMany
-    private List<Avaliacao> avaliacao;
+    public FilmeRequestDTO(){
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitulo() {

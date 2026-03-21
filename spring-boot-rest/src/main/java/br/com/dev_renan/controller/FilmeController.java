@@ -1,5 +1,7 @@
 package br.com.dev_renan.controller;
 
+import br.com.dev_renan.dto.FilmeRequestDTO;
+import br.com.dev_renan.dto.FilmeResponseDTO;
 import br.com.dev_renan.model.Filme;
 import br.com.dev_renan.service.ServiceFilmes;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,33 +19,52 @@ public class FilmeController {
     @Autowired
     private ServiceFilmes service;
 
-    @PostMapping
-    public ResponseEntity<Filme> save(@RequestBody Filme filme){
-        Filme filme1 = service.save(filme);
+   @PostMapping
+   public ResponseEntity<FilmeResponseDTO> save(@RequestBody FilmeRequestDTO dto){
+       Filme filme = new Filme();
 
-         return ResponseEntity.status(HttpStatus.CREATED).body(filme1);
-    }
+       filme.setTitulo(dto.getTitulo());
+       filme.setAnoLancamento(dto.getAnoLancamento());
+       filme.setGenero(dto.getGenero());
 
-    @GetMapping
-    public ResponseEntity<List<Filme>> findAll(){
-        List<Filme> filmes = service.findAll();
+       Filme filmeSalvo = service.save(filme);
 
-        return ResponseEntity.ok(filmes);
-    }
+       return ResponseEntity.status(HttpStatus.CREATED).body(new FilmeResponseDTO(filmeSalvo));
+   }
+
+   @GetMapping
+   public ResponseEntity<List<FilmeResponseDTO>> findAll(){
+       List<Filme> filmes = service.findAll();
+       List<FilmeResponseDTO> lista = new ArrayList<>();
+
+       for(Filme filme : filmes){
+           lista.add(new FilmeResponseDTO(filme));
+       }
+
+       return ResponseEntity.ok(lista);
+   }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Filme> findById(@PathVariable Long id){
+    public ResponseEntity<FilmeResponseDTO> findById(@PathVariable Long id){
         Filme filme = service.findById(id);
 
-        return ResponseEntity.ok(filme);
+        FilmeResponseDTO dto = new FilmeResponseDTO(filme);
+
+        return ResponseEntity.ok(dto);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Filme> update(@PathVariable Long id, @RequestBody Filme filme){
+    public ResponseEntity<FilmeResponseDTO> update(@PathVariable Long id, @RequestBody FilmeRequestDTO dto){
+        Filme filme = new Filme();
         filme.setId(id);
-        Filme filme1 = service.update(filme);
 
-        return ResponseEntity.ok(filme1);
+        filme.setTitulo(dto.getTitulo());
+        filme.setAnoLancamento(dto.getAnoLancamento());
+        filme.setGenero(dto.getGenero());
+
+        Filme response = service.update(filme);
+
+        return ResponseEntity.ok(new FilmeResponseDTO(response));
     }
 
     @DeleteMapping(value = "/{id}")
