@@ -2,6 +2,8 @@ package br.com.dev_renan.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Filme {
 
@@ -14,7 +16,7 @@ public class Filme {
     private String genero;
 
     @OneToMany
-    private Avaliacao avaliacao;
+    private List<Avaliacao> avaliacao;
 
     public Long getId() {
         return id;

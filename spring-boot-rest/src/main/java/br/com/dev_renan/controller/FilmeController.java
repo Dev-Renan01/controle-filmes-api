@@ -1,4 +1,4 @@
-package br.com.dev_renan.controllers;
+package br.com.dev_renan.controller;
 
 import br.com.dev_renan.model.Filme;
 import br.com.dev_renan.service.ServiceFilmes;
