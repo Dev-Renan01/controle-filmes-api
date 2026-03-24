@@ -74,5 +74,4 @@ public class FilmeController {
         return ResponseEntity.noContent().build(); /* Retorna HTTP 204 (No Content), indicando que a operação foi bem-sucedida
                                                    porém não há conteúdo para retornar no corpo da resposta */
     }
-
 }
