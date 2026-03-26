@@ -10,11 +10,22 @@ public class FilmeResponseDTO {
     private Integer anoLancamento;
     private String genero;
 
+    // numero de avaliações
+    private Integer quantidadeAvaliacoes;
+
+
     public FilmeResponseDTO(Filme filme) {
         this.id = filme.getId();
         this.titulo = filme.getTitulo();
         this.anoLancamento = filme.getAnoLancamento();
         this.genero = filme.getGenero();
+
+        // Contando o numero de avaliações em cada filme
+        if(filme.getAvaliacoes() != null){
+            this.quantidadeAvaliacoes = filme.getAvaliacoes().size();
+        }else{
+            this.quantidadeAvaliacoes = 0;
+        }
     }
 
     public Long getId() {

@@ -1,5 +1,6 @@
 package br.com.dev_renan.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -15,8 +16,17 @@ public class Filme {
     private Integer anoLancamento;
     private String genero;
 
-    @OneToMany
-    private List<Avaliacao> avaliacao;
+    @OneToMany(mappedBy = "filme")
+    @JsonIgnore // Evitar loop
+    private List<Avaliacao> avaliacoes;
+
+    public List<Avaliacao> getAvaliacoes() {
+        return avaliacoes;
+    }
+
+    public void setAvaliacoes(List<Avaliacao> avaliacoes) {
+        this.avaliacoes = avaliacoes;
+    }
 
     public Long getId() {
         return id;

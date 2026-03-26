@@ -6,7 +6,18 @@ public class AvaliacaoRequestDTO {
     private Integer nota;
     private String comentario;
 
-    public AvaliacaoRequestDTO(){}
+    private Long filmeId; // chave do relacionamento
+
+    public AvaliacaoRequestDTO() {
+    }
+
+    public Long getFilmeId() {
+        return filmeId;
+    }
+
+    public void setFilmeId(Long filmeId) {
+        this.filmeId = filmeId;
+    }
 
     public String getUsuario() {
         return usuario;

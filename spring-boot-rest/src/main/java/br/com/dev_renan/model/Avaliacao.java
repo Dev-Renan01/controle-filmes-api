@@ -14,6 +14,7 @@ public class Avaliacao {
     private String comentario;
 
     @ManyToOne
+    @JoinColumn(name = "id_filme") //definir a coluna no banco que faz o relacionam
     private Filme filme;
 
     public Long getId() {

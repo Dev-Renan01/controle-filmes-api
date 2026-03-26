@@ -48,9 +48,7 @@ public class FilmeController {
     public ResponseEntity<FilmeResponseDTO> findById(@PathVariable Long id){
         Filme filme = service.findById(id);
 
-        FilmeResponseDTO dto = new FilmeResponseDTO(filme);
-
-        return ResponseEntity.ok(dto);
+        return ResponseEntity.ok(new FilmeResponseDTO(filme));
     }
 
     @PutMapping(value = "/{id}")
@@ -62,9 +60,9 @@ public class FilmeController {
         filme.setAnoLancamento(dto.getAnoLancamento());
         filme.setGenero(dto.getGenero());
 
-        Filme response = service.update(filme);
+        Filme filmeSalvo = service.update(filme);
 
-        return ResponseEntity.ok(new FilmeResponseDTO(response));
+        return ResponseEntity.ok(new FilmeResponseDTO(filmeSalvo));
     }
 
     @DeleteMapping(value = "/{id}")
