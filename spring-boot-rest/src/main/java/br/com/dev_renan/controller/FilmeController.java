@@ -3,7 +3,7 @@ package br.com.dev_renan.controller;
 import br.com.dev_renan.dto.FilmeRequestDTO;
 import br.com.dev_renan.dto.FilmeResponseDTO;
 import br.com.dev_renan.model.Filme;
-import br.com.dev_renan.service.ServiceFilmes;
+import br.com.dev_renan.service.filmeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ import java.util.List;
 public class FilmeController {
 
     @Autowired
-    private ServiceFilmes service;
+    private filmeService service;
 
    @PostMapping
    public ResponseEntity<FilmeResponseDTO> save(@RequestBody FilmeRequestDTO dto){
@@ -59,6 +59,7 @@ public class FilmeController {
         filme.setTitulo(dto.getTitulo());
         filme.setAnoLancamento(dto.getAnoLancamento());
         filme.setGenero(dto.getGenero());
+
 
         Filme filmeSalvo = service.update(filme);
 

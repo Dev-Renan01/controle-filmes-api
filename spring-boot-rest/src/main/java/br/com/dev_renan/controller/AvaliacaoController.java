@@ -3,7 +3,9 @@ package br.com.dev_renan.controller;
 import br.com.dev_renan.dto.AvaliacaoRequestDTO;
 import br.com.dev_renan.dto.AvaliacaoResponseDTO;
 import br.com.dev_renan.model.Avaliacao;
-import br.com.dev_renan.service.ServiceAvaliacao;
+import br.com.dev_renan.model.Filme;
+import br.com.dev_renan.service.avaliacaoService;
+import br.com.dev_renan.service.filmeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +19,10 @@ import java.util.List;
 public class AvaliacaoController {
 
     @Autowired
-    private ServiceAvaliacao service;
+    private avaliacaoService avaliacaoService;
+
+    @Autowired
+    private filmeService filmeService;
 
     @PostMapping
     public ResponseEntity<AvaliacaoResponseDTO> save(@RequestBody AvaliacaoRequestDTO dto){
@@ -27,14 +32,17 @@ public class AvaliacaoController {
         avaliacao.setNota(dto.getNota());
         avaliacao.setComentario(dto.getComentario());
 
-        Avaliacao avaliacaoSalva = service.save(avaliacao);
+        Filme filmeId = filmeService.findById(dto.getFilmeId());
+        avaliacao.setFilme(filmeId);
+
+        Avaliacao avaliacaoSalva = avaliacaoService.save(avaliacao);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(new AvaliacaoResponseDTO(avaliacaoSalva));
     }
 
     @GetMapping
     public ResponseEntity<List<AvaliacaoResponseDTO>> findAll() {
-        List<Avaliacao> avaliacoes = service.findAll();
+        List<Avaliacao> avaliacoes = avaliacaoService.findAll();
 
         List<AvaliacaoResponseDTO> listar = new ArrayList<>();
 
@@ -46,7 +54,7 @@ public class AvaliacaoController {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<AvaliacaoResponseDTO> findById(@PathVariable Long id){
-        Avaliacao avaliacao = service.findById(id);
+        Avaliacao avaliacao = avaliacaoService.findById(id);
 
         return ResponseEntity.ok(new AvaliacaoResponseDTO(avaliacao));
     }
@@ -60,13 +68,13 @@ public class AvaliacaoController {
         avaliacao.setNota(dto.getNota());
         avaliacao.setComentario(dto.getComentario());
 
-        Avaliacao salvar = service.update(avaliacao);
+        Avaliacao salvar = avaliacaoService.update(avaliacao);
         return ResponseEntity.ok(new AvaliacaoResponseDTO(avaliacao));
     }
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
-        service.delete(id);
+        avaliacaoService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }

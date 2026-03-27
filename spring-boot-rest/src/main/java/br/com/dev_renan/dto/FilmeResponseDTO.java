@@ -28,6 +28,14 @@ public class FilmeResponseDTO {
         }
     }
 
+    public Integer getQuantidadeAvaliacoes() {
+        return quantidadeAvaliacoes;
+    }
+
+    public void setQuantidadeAvaliacoes(Integer quantidadeAvaliacoes) {
+        this.quantidadeAvaliacoes = quantidadeAvaliacoes;
+    }
+
     public Long getId() {
         return id;
     }
