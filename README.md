@@ -2,15 +2,14 @@
 
 ## 📌 Descrição
 Este projeto é um **exercício prático com Spring Boot e Spring Data JPA** que implementa um sistema simples de **controle de filmes e avaliações**.  
-Ele foi criado com o objetivo de praticar **CRUD, relacionamentos, validação e repositórios customizados**.
+Ele foi criado com o objetivo de praticar **CRUD, padrão DTO, relacionamentos, validação, e repositórios customizados**.
 
 ---
 
 ## 🚀 Funcionalidades
 - Cadastro de **Filmes** (título, ano de lançamento, gênero).  
 - Cadastro de **Avaliações** (usuário, nota, comentário, filme associado).  
-- Relacionamento **1:N** (um filme pode ter várias avaliações).  
-- Consultas personalizadas com **Spring Data JPA**.  
+- Relacionamento **1:N** (um filme pode ter várias avaliações).    
 
 ---
 
@@ -18,14 +17,14 @@ Ele foi criado com o objetivo de praticar **CRUD, relacionamentos, validação e
 
 ### 🎥 Filme
 - `id` (Long, @Id, @GeneratedValue)  
-- `titulo` (String, obrigatório)  
+- `titulo` (String,)  
 - `anoLancamento` (Integer)  
 - `genero` (String)  
 
 ### ⭐ Avaliacao
 - `id` (Long, @Id, @GeneratedValue)  
-- `usuario` (String, obrigatório)  
-- `nota` (Integer, obrigatório, 0 a 10)  
-- `comentario` (String, opcional)  
+- `usuario` (String)  
+- `nota` (Integer)  
+- `comentario` (String)  
 - `filme` (ManyToOne → Filme)  
 
