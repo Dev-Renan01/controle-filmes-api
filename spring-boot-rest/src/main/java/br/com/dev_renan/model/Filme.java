@@ -16,7 +16,7 @@ public class Filme {
     private Integer anoLancamento;
     private String genero;
 
-    @OneToMany(mappedBy = "filme")
+    @OneToMany(mappedBy = "filme", cascade = CascadeType.ALL)
     @JsonIgnore // Evitar loop
     private List<Avaliacao> avaliacoes;
 

@@ -60,7 +60,6 @@ public class FilmeController {
         filme.setAnoLancamento(dto.getAnoLancamento());
         filme.setGenero(dto.getGenero());
 
-
         Filme filmeSalvo = service.update(filme);
 
         return ResponseEntity.ok(new FilmeResponseDTO(filmeSalvo));

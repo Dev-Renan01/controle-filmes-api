@@ -32,7 +32,7 @@ public class AvaliacaoController {
         avaliacao.setNota(dto.getNota());
         avaliacao.setComentario(dto.getComentario());
 
-        Filme filmeId = filmeService.findById(dto.getFilmeId());
+        Filme filmeId = filmeService.findById(dto.getFilmeId()); // Busca o filme no banco pelo ID informado no DTO
         avaliacao.setFilme(filmeId);
 
         Avaliacao avaliacaoSalva = avaliacaoService.save(avaliacao);
@@ -67,6 +67,9 @@ public class AvaliacaoController {
         avaliacao.setUsuario(dto.getUsuario());
         avaliacao.setNota(dto.getNota());
         avaliacao.setComentario(dto.getComentario());
+
+        Filme filmeId = filmeService.findById(dto.getFilmeId()); // Busca o filme no banco pelo ID informado no DTO
+        avaliacao.setFilme(filmeId);
 
         Avaliacao salvar = avaliacaoService.update(avaliacao);
         return ResponseEntity.ok(new AvaliacaoResponseDTO(avaliacao));
