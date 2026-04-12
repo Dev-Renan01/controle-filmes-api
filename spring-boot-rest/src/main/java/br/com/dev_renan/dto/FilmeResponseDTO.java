@@ -1,6 +1,10 @@
 package br.com.dev_renan.dto;
 
+import br.com.dev_renan.model.Avaliacao;
 import br.com.dev_renan.model.Filme;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FilmeResponseDTO {
 
@@ -11,7 +15,7 @@ public class FilmeResponseDTO {
     private String genero;
 
     // numero de avaliações
-    private Integer quantidadeAvaliacoes;
+    private List<String> avaliacoes;
 
 
     public FilmeResponseDTO(Filme filme) {
@@ -21,19 +25,25 @@ public class FilmeResponseDTO {
         this.genero = filme.getGenero();
 
         // Contando o numero de avaliações em cada filme
-        if(filme.getAvaliacoes() != null){
-            this.quantidadeAvaliacoes = filme.getAvaliacoes().size();
-        }else{
-            this.quantidadeAvaliacoes = 0;
+
+        // Inicializa a lista antes de adicionar elementos
+        this.avaliacoes = new ArrayList<>();
+
+        if(filme.getAvaliacoes() != null) {
+            for (Avaliacao avaliacao : filme.getAvaliacoes()) {
+                avaliacoes.add("ID: " + avaliacao.getId() + " - "
+                        + avaliacao.getUsuario() + " - Nota: "
+                        + avaliacao.getNota());
+            }
         }
     }
 
-    public Integer getQuantidadeAvaliacoes() {
-        return quantidadeAvaliacoes;
+    public List<String> getAvaliacoes() {
+        return avaliacoes;
     }
 
-    public void setQuantidadeAvaliacoes(Integer quantidadeAvaliacoes) {
-        this.quantidadeAvaliacoes = quantidadeAvaliacoes;
+    public void setAvaliacoes(List<String> avaliacoes) {
+        this.avaliacoes = avaliacoes;
     }
 
     public Long getId() {

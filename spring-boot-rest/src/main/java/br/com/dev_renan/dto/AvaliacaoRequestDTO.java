@@ -1,6 +1,5 @@
 package br.com.dev_renan.dto;
 
-import br.com.dev_renan.model.Filme;
 
 public class AvaliacaoRequestDTO {
 

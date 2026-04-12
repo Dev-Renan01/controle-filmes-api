@@ -4,8 +4,8 @@ import br.com.dev_renan.dto.AvaliacaoRequestDTO;
 import br.com.dev_renan.dto.AvaliacaoResponseDTO;
 import br.com.dev_renan.model.Avaliacao;
 import br.com.dev_renan.model.Filme;
-import br.com.dev_renan.service.avaliacaoService;
-import br.com.dev_renan.service.filmeService;
+import br.com.dev_renan.service.AvaliacaoService;
+import br.com.dev_renan.service.FilmeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +19,10 @@ import java.util.List;
 public class AvaliacaoController {
 
     @Autowired
-    private avaliacaoService avaliacaoService;
+    private AvaliacaoService avaliacaoService;
 
     @Autowired
-    private filmeService filmeService;
+    private FilmeService filmeService;
 
     @PostMapping
     public ResponseEntity<AvaliacaoResponseDTO> save(@RequestBody AvaliacaoRequestDTO dto){
